@@ -1,18 +1,21 @@
 // Variables Declaration...
-let generateDisplay = document.getElementById('displayGenerate');
-let formDisplay = document.getElementById('formDisplay');
-let pinMatch = document.getElementById('notify2');
-let noMatch = document.getElementById('notify1');
-let generateButton = document.querySelector('.generate-btn');
-let lessNum = document.getElementById('lessNum').innerText;
-let lessNumCon = parseInt(lessNum);
+const generateDisplay = document.getElementById('displayGenerate');
+const formDisplay = document.getElementById('formDisplay');
+const pinMatch = document.getElementById('notify2');
+const pinNotMatch = document.getElementById('notify1');
+const generateButton = document.querySelector('.generate-btn');
+const lessNum = document.getElementById('lessNum').innerText;
+let less = parseInt(lessNum);
+
+
 // Generate pin Area...
 generateButton.addEventListener('click', (e) => {
     let randomNumber = Math.floor(Math.random() * 9999) + 1000;
     generateDisplay.value += randomNumber;
     
 });
-// Keyboard Area...
+
+// // Keyboard Area...
 let buttons = Array.from(document.querySelectorAll('.button'));
 buttons.map((button) => {
     button.addEventListener('click', (e) => {
@@ -28,23 +31,73 @@ buttons.map((button) => {
         }
     });
 });
-// Submit Area....
+
+// // Submit Area....
 const submit = document.getElementById('submit-btn');
 submit.addEventListener('click', (e) => {
     if(generateDisplay.value == formDisplay.value) {
-        document.getElementById('notify2').style.display = 'block';
+        pinMatch.style.display = 'block';
         setTimeout(() => {
-            document.getElementById('notify2').style.display = 'none';
+            pinMatch.style.display = 'none';
         }, 3000);
     }else {
-        document.getElementById('notify1').style.display = 'block';
+        pinNotMatch.style.display = 'block';
         setTimeout(() => {
-            document.getElementById('notify1').style.display = 'none';
+            pinNotMatch.style.display = 'none';
         }, 3000);
     }
-        generateDisplay.value = "";
-        formDisplay.value = "";
     if(generateDisplay.value != formDisplay.value) {
-        lessNumCon--;
+        less--;
     }
+    generateDisplay.value = "";
+    formDisplay.value = "";
 })
+
+
+
+
+
+// const generateButton = document.querySelector('.generate-btn');
+// const generateDisplay = document.getElementById('displayGenerate');
+// const formDisplay = document.getElementById('formDisplay');
+// const notify1 = document.getElementById('notify1');
+// const notify2 = document.getElementById('notify2');
+
+// generateButton.addEventListener('click', (e) => {
+//     let randomNumber = Math.floor(Math.random() * 9999) + 1000;
+//     generateDisplay.value += randomNumber;
+// })
+
+// let buttons = Array.from(document.querySelectorAll('.button'));
+// buttons.map((button) => {
+//     button.addEventListener('click', (e) => {
+//         switch(e.target.innerText){
+//             case 'C':
+//                 formDisplay.value = " ";
+//                 break;
+//             case '←':
+//                 formDisplay.value = formDisplay.value.slice(0, -1);
+//                 break;
+//             default:
+//                 formDisplay.value += e.target.innerText;
+//         }
+//     })
+// })
+
+// const submit = document.getElementById('submit-btn');
+// submit.addEventListener('click', (e) => {
+//     if(generateDisplay.value == formDisplay.value){
+//         notify2.style.display = "block";
+//         setTimeout(() => {
+//             notify2.style.display = 'none';
+//         }, 3000);
+//     }else{
+//         notify1.style.display = "block";
+//         setTimeout(() => {
+//             notify1.style.display = 'none';
+//         }, 3000);
+//     }
+//     generateDisplay.value = " ";
+//     formDisplay.value = " ";
+// })
+
